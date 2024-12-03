@@ -1,8 +1,11 @@
 from enum import IntEnum
 
 # assumptions: octave equivalency & 12-tone equal temperament
-Note = IntEnum('Note', 'C Csh_Db D Dsh_Eb E F Fsh_Gb G Gsh_Ab A Ash_Bb B', start=0)
-Interval = IntEnum('Interval', 'Unison Min2nd Maj2nd Min3rd Maj3rd Per4th Dim5th Per5th Min6th Maj6th Min7th Maj7th Octave', start=0)
+Note = IntEnum('Note', 'C Csh_Db D Dsh_Eb E F Fsh_Gb \
+    G Gsh_Ab A Ash_Bb B', start=0)
+Interval = IntEnum('Interval', 'Unison Min2nd Maj2nd Min3rd Maj3rd \
+    Per4th Dim5th Per5th Min6th Maj6th Min7th Maj7th Octave', start=0)
+print(Interval.Octave.value)
 
 # notes can be transposed by an interval, giving another note
 def transpose(note, interval) -> Note:
@@ -15,7 +18,8 @@ def transpose_loop(note, interval, repeat):
     return note
 
 # F is a perfect fifth below C, so it can be used to generate the C major scale
-C_major = sorted([transpose_loop(Note.F, Interval.Per5th, index) for index in range(7)])
+C_major = sorted([transpose_loop(Note.F, Interval.Per5th, index)
+                  for index in range(7)])
 print(C_major)
 
 def note_diff(n1, n2):
